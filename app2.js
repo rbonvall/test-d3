@@ -22,7 +22,11 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
     circles
         .attr('cx', λ('x, i -> 50 * i + 50'))
         .attr('cy', height / 2)
-        .attr('r', F.id)
+        .attr('r', 50)
+        .transition()
+            .delay(500)
+            .duration(500)
+            .attr('r', F.id)
         ;
 
 });
