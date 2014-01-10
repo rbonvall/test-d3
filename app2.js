@@ -29,6 +29,19 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
             .attr('r', F.id)
         ;
 
+    var labels = svg.selectAll('text')
+        .data(dataset)
+        .enter()
+        .append('text')
+        ;
+
+    labels
+        .text(Math.floor)
+        .attr('text-anchor', 'middle')
+        .attr('x', λ('x, i -> 50 * i + 50'))
+        .attr('y', height / 2)
+        ;
+
 });
 });
 
