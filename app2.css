@@ -1,3 +1,8 @@
 svg circle {
     fill: hsla(60, 100%, 40%, 0.7);
 }
+
+svg text {
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
