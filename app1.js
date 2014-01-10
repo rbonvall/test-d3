@@ -1,5 +1,6 @@
 require(['config'], function () {
 require(['d3', 'lodash'], function (d3, _) {
+    'use strict';
 
     var square = function (x) { return x * x; };
     var exclamate = function (x) { return '¡' + x + '!'; };

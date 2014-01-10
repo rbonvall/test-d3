@@ -1,5 +1,6 @@
 require(['config'], function () {
 require(['d3', 'lodash', 'functional'], function (d3, _, F) {
+    'use strict';
 
     var λ = F.lambda;
     var dataset = _.range(1, 10).map(Math.random).map(λ('x * 50'));
