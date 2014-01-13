@@ -26,7 +26,7 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
         .transition()
             .delay(500)
             .duration(500)
-            .attr('r', F.id)
+            .attr('r', λ('5 * Math.sqrt(x)'))
         ;
 
     var labels = svg.selectAll('text')
