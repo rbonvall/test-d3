@@ -1,0 +1,8 @@
+body {
+    background-color: hsl(300, 30%, 80%);
+}
+
+svg text {
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
