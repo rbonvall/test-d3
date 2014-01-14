@@ -61,7 +61,7 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
         ;
 
     labels
-        .text(function (d) { return d[0] + ', ' + d[1]; })
+        .text(λ('d.join(", ")'))
         .attr('x', F.compose(xScale, first))
         .attr('y', F.compose(yScale, second))
         ;
