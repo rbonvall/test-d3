@@ -66,6 +66,15 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
         .attr('y', F.compose(yScale, second))
         ;
 
+    var xAxis = d3.svg.axis()
+        .scale(xScale)
+        .orient('bottom')
+        ;
+    svg.append('g')
+        .attr('class', 'axis')
+        .call(xAxis)
+        ;
+
 });
 });
 
