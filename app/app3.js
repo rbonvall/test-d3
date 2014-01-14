@@ -18,7 +18,7 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
     ];
     var width = 500;
     var height = 300;
-    var padding = 20;
+    var padding = 30;
 
     var first = F.pluck(0);
     var second = F.pluck(1);
@@ -69,10 +69,23 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
     var xAxis = d3.svg.axis()
         .scale(xScale)
         .orient('bottom')
+        .ticks(5)
         ;
     svg.append('g')
         .attr('class', 'axis')
+        .attr('transform', 'translate(0, ' + (height - padding) + ')')
         .call(xAxis)
+        ;
+
+    var yAxis = d3.svg.axis()
+        .scale(yScale)
+        .orient('left')
+        .ticks(10)
+        ;
+    svg.append('g')
+        .attr('class', 'axis')
+        .attr('transform', 'translate(' + padding + ', 0)')
+        .call(yAxis)
         ;
 
 });
