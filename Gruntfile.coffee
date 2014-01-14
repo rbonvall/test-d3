@@ -5,13 +5,13 @@ module.exports = (grunt) ->
         jshint:
             options:
                 jshintrc: '.jshintrc'
-            all: ['*.js']
+            all: ['app/*.js']
 
         connect:
             server:
                 options:
                     port: 9000
-                    base: '.'
+                    base: 'app'
                     keepalive: true
 
     grunt.loadNpmTasks 'grunt-contrib-jshint'
