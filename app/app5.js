@@ -3,7 +3,7 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
     'use strict';
 
     var λ = F.lambda;
-    var twoDecimals = function (x) { return x.toFixed(2) };
+    var twoDecimals = function (x) { return x.toFixed(2); };
     var width = 800, height = 400;
     var margin = 50;
 
@@ -38,7 +38,8 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
         var line = d3.svg.line()
             .interpolate('monotone')
             .x(function (d, i) { return x(i); })
-            .y(function (d, i) { return y(d); })
+            .y(function (d) { return y(d); })
+            ;
         var colorScale = d3.scale.category10();
        _(obj.teams).keys().each(function (team, i) {
             var color = colorScale(i);
@@ -88,7 +89,6 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
     function matchdayRelativePoints(matchdayPoints) {
         var max = _.max(matchdayPoints);
         var min = _.min(matchdayPoints);
-        var spread = max - min;
         return _(matchdayPoints)
             .mapValues(function (x) {
                 return (x - min) / (max - min);
@@ -186,6 +186,7 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
     }());
 
     function assertEqual(a, b, msg) {
+        /* global console */
         if (_(a).isEqual(b)) {
             console.debug('✓', msg);
         } else {
