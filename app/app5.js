@@ -10,7 +10,6 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
     var svg = d3.select('#vis').append('svg')
         .attr('width', width)
         .attr('height', height)
-        .style('background-color', 'hsl(250, 50%, 80%)')
         ;
     d3.json('data/elim2014.json', function (obj) {
         var pts = objToArray(pointsByMatchday(obj.matches));
@@ -53,9 +52,7 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
             svg.append("path")
                 .datum(_.pluck(relPts, team))
                 .attr("class", "line")
-                .attr("fill", "none")
                 .attr("stroke", color)
-                .attr("stroke-width", "5")
                 .attr("d", line)
                 ;
        });

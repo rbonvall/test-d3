@@ -18,3 +18,12 @@ h1:after, h1:before {
     padding: 0 .5em;
 }
 
+svg path.line {
+    fill: none;
+    stroke-width: 5;
+}
+
+#vis svg {
+    background-color: hsl(250, 50%, 80%);
+}
+
