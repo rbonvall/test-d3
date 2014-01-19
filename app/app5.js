@@ -46,6 +46,17 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
         return pts;
     }
 
+    function matchdayRelativePoints(matchdayPoints) {
+        var max = _.max(matchdayPoints);
+        var min = _.min(matchdayPoints);
+        var spread = max - min;
+        return _(matchdayPoints)
+            .mapValues(function (x) {
+                return (x - min) / (max - min);
+            }).value()
+            ;
+    }
+
     function zero(ptsPerMatchday) {
         return _(ptsPerMatchday)
             .map(_.keys)
@@ -115,6 +126,10 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
             { CHI: 6, ESP: 6, HON: 1, SUI: 4 }
         ];
         assertEqual(pt, pt_expected, 'accumulatedPointsByMatchday');
+
+        var rp = matchdayRelativePoints(_.last(pt));
+        var rp_expected = { CHI: 1, ESP: 1, HON: 0, SUI: 3/5 };
+        assertEqual(rp, rp_expected, 'matchdayRelativePoints');
 
         var z = zero(pa);
         var z_expected = { CHI: 0, ESP: 0, HON: 0, SUI: 0 };
