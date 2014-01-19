@@ -21,6 +21,7 @@ h1:after, h1:before {
 svg path.line {
     fill: none;
     stroke-width: 5;
+    stroke-opacity: 60%;
 }
 
 #vis svg {
