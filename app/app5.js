@@ -3,6 +3,7 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
     'use strict';
 
     var λ = F.lambda;
+    var twoDecimals = function (x) { return x.toFixed(2) };
     var width = 800, height = 400;
     var margin = 50;
 
@@ -20,7 +21,10 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
             .data(relPts)
             .enter()
                 .append('p')
-                .text(JSON.stringify)
+                .text(function (m, i) {
+                    m = _.mapValues(m, twoDecimals);
+                    return "" + (i + 1) + ": " + JSON.stringify(m).replace(/"/g, '');
+                })
             ;
 
         var x = d3.scale.linear()
