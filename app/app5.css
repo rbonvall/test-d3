@@ -1,0 +1,20 @@
+body {
+    background-color: hsl(250, 70%, 90%);
+    max-width: 30em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    padding-left: auto;
+    padding-right: auto;
+    color: hsl(250, 80%, 10%);
+}
+
+h1:after, h1:before {
+    content: "❦";
+    font-size: smaller;
+    color: hsl(250, 50%, 70%);
+    padding: 0 .5em;
+}
+
