@@ -12,15 +12,6 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
         ;
     d3.json('data/elim2014.json', function () {});
 
-    function matchPoints(match) {
-        var th = match.teams[0], gh = match.score[0];
-        var tv = match.teams[1], gv = match.score[1];
-        var pts = {};
-        if      (gh > gv) { pts[th] = 3; pts[tv] = 0; }
-        else if (gh < gv) { pts[th] = 0; pts[tv] = 3; }
-        else              { pts[th] = 1; pts[tv] = 1; }
-        return pts;
-    }
 
     function pointsByMatchday(matches) {
         return _(matches)
@@ -33,15 +24,6 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
             })
             .value()
             ;
-    }
-
-    function objToArray(obj) {
-        var array = [];
-        _(obj).keys().each(function (i) {
-            array[Number(i)] = obj[i];
-        });
-        return _.compact(array);
-
     }
 
     function accumulatedPointsByMatchday(ptsPerMatchday) {
@@ -69,6 +51,23 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
         return _.merge(_.clone(a), b, λ('+'));
     }
 
+    function objToArray(obj) {
+        var array = [];
+        _(obj).keys().each(function (i) {
+            array[Number(i)] = obj[i];
+        });
+        return _.compact(array);
+    }
+
+    function matchPoints(match) {
+        var th = match.teams[0], gh = match.score[0];
+        var tv = match.teams[1], gv = match.score[1];
+        var pts = {};
+        if      (gh > gv) { pts[th] = 3; pts[tv] = 0; }
+        else if (gh < gv) { pts[th] = 0; pts[tv] = 3; }
+        else              { pts[th] = 1; pts[tv] = 1; }
+        return pts;
+    }
 
     (function test() {
         var obj = {
@@ -114,6 +113,11 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
         var a = addValues({a: 15, b: 10}, {a: 50, b: 100});
         var a_expected = {a: 65, b: 110};
         assertEqual(a, a_expected, 'addValues');
+
+        assertEqual(matchPoints({ teams: ['A', 'B'], score: [0, 0]}), {A: 1, B: 1}, 'matchPoints₁');
+        assertEqual(matchPoints({ teams: ['A', 'B'], score: [1, 0]}), {A: 3, B: 0}, 'matchPoints₂');
+        assertEqual(matchPoints({ teams: ['A', 'B'], score: [1, 3]}), {A: 0, B: 3}, 'matchPoints₃');
+        assertEqual(matchPoints({ teams: ['A', 'B'], score: [2, 2]}), {A: 1, B: 1}, 'matchPoints₄');
 
     }());
 
