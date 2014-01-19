@@ -14,7 +14,7 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
     };
 
     var m = 30, n = 10, matrix = [];
-    _.range(m).forEach(function (i) {
+    _.range(m).forEach(function () {
         matrix.push(_.range(n).map(random));
     });
 
