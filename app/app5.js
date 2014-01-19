@@ -10,8 +10,18 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
         .attr('height', height)
         .style('background-color', 'hsl(250, 50%, 80%)')
         ;
-    d3.json('data/elim2014.json', function () {});
+    d3.json('data/elim2014.json', function (obj) {
+        var pts = objToArray(pointsByMatchday(obj.matches));
+        var accPts = accumulatedPointsByMatchday(pts);
+        d3.select('body')
+            .selectAll('p')
+            .data(accPts)
+            .enter()
+                .append('p')
+                .text(JSON.stringify)
+            ;
 
+    });
 
     function pointsByMatchday(matches) {
         return _(matches)
