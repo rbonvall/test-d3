@@ -3,7 +3,8 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
     'use strict';
 
     var λ = F.lambda;
-    var width = 500, height = 300;
+    var width = 800, height = 400;
+    var margin = 50;
 
     var svg = d3.select('#vis').append('svg')
         .attr('width', width)
@@ -13,13 +14,47 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
     d3.json('data/elim2014.json', function (obj) {
         var pts = objToArray(pointsByMatchday(obj.matches));
         var accPts = accumulatedPointsByMatchday(pts);
+        var relPts = accPts.map(matchdayRelativePoints);
         d3.select('body')
             .selectAll('p')
-            .data(accPts)
+            .data(relPts)
             .enter()
                 .append('p')
                 .text(JSON.stringify)
             ;
+
+        var x = d3.scale.linear()
+            .domain([1, accPts.length])
+            .range([margin, width - margin])
+            ;
+        var y = d3.scale.linear()
+            .domain([0, 1])
+            .range([height - margin, margin])
+            ;
+        var line = d3.svg.line()
+            .interpolate('monotone')
+            .x(function (d, i) { return x(i); })
+            .y(function (d, i) { return y(d); })
+        var colorScale = d3.scale.category10();
+       _(obj.teams).keys().each(function (team, i) {
+            var color = colorScale(i);
+            svg.append("text")
+                .datum(team)
+                .attr('x', width - 1.5 * margin)
+                .attr('y', y(_.last(relPts)[team]))
+                .attr('text-color', color)
+                .text(obj.teams[team])
+                ;
+            svg.append("path")
+                .datum(_.pluck(relPts, team))
+                .attr("class", "line")
+                .attr("fill", "none")
+                .attr("stroke", color)
+                .attr("stroke-width", "5")
+                .attr("d", line)
+                ;
+       });
+
 
     });
 
