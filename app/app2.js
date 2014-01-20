@@ -1,9 +1,9 @@
 require(['config'], function () {
-require(['d3', 'lodash', 'functional'], function (d3, _, F) {
+require(['d3', 'functional'], function (d3, F) {
     'use strict';
 
     var λ = F.lambda;
-    var dataset = _.range(1, 10).map(Math.random).map(λ('x * 50'));
+    var dataset = d3.range(1, 10).map(Math.random).map(λ('x * 50'));
     var width = 500;
     var height = 100;
 

@@ -1,5 +1,5 @@
 require(['config'], function () {
-require(['d3', 'lodash'], function (d3, _) {
+require(['d3'], function (d3) {
     'use strict';
 
     var square = function (x) { return x * x; };
@@ -9,7 +9,7 @@ require(['d3', 'lodash'], function (d3, _) {
 
     d3.select('#chart')
         .selectAll('p')
-        .data(_.range(1, 10).map(square))
+        .data(d3.range(1, 10).map(square))
         .enter()
             .append('p')
             .text(exclamate)

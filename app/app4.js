@@ -1,5 +1,5 @@
 require(['config'], function () {
-require(['d3', 'lodash', 'functional'], function (d3, _, F) {
+require(['d3', 'functional'], function (d3, F) {
     'use strict';
 
     var λ = F.lambda;
@@ -14,8 +14,8 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
     };
 
     var m = 30, n = 10, matrix = [];
-    _.range(m).forEach(function () {
-        matrix.push(_.range(n).map(random));
+    d3.range(m).forEach(function () {
+        matrix.push(d3.range(n).map(random));
     });
 
     var table = d3.select('#matrix')

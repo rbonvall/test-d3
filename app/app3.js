@@ -1,6 +1,6 @@
 // §7. Scales.
 require(['config'], function () {
-require(['d3', 'lodash', 'functional'], function (d3, _, F) {
+require(['d3', 'functional'], function (d3, F) {
     'use strict';
 
     var λ = F.lambda;
