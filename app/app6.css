@@ -1,0 +1,44 @@
+body {
+    background-color: hsl(40, 70%, 90%);
+    max-width: 30em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    padding-left: auto;
+    padding-right: auto;
+    color: hsl(220, 80%, 10%);
+}
+
+h1:after, h1:before {
+    content: "❦";
+    font-size: smaller;
+    color: hsl(220, 50%, 70%);
+    padding: 0 .5em;
+}
+
+#chart svg {
+    background-color: hsl(40, 50%, 80%);
+}
+
+svg .dataLine {
+    fill: none;
+    stroke-width: 3px;
+    stroke: hsl(40, 80%, 10%);
+}
+
+svg .axis path, svg .axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+svg .axis {
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+}
+
+svg .data-label {
+    text-anchor: middle;
+}
