@@ -30,11 +30,11 @@ require(['d3', 'functional'], function (d3, F) {
 
     // Draw axes
     svg.append('g')
-        .attr('class', 'axis')
+        .classed('axis', true)
         .attr('transform', 'translate(0, Y)'.replace('Y', height - padding))
         .call(xAxis);
     svg.append('g')
-        .attr('class', 'axis')
+        .classed('axis', true)
         .attr('transform', 'translate(X, 0)'.replace('X', padding))
         .call(yAxis);
 
@@ -45,7 +45,7 @@ require(['d3', 'functional'], function (d3, F) {
 
     // Draw line
     svg.append('path')
-        .attr('class', 'dataLine')
+        .classed('dataLine', true)
         .attr('d', line(dataset));
 
     // Put labels
@@ -53,7 +53,7 @@ require(['d3', 'functional'], function (d3, F) {
         .data(dataset)
         .enter()
             .append('text')
-            .attr('class', 'dataLabel')
+            .classed('dataLabel', true)
             .text(Math.floor)
             .attr('x', F.flip(x))
             .attr('y', F.sequence(λ('+5'), y));
