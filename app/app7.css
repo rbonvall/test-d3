@@ -1,26 +1,8 @@
-body {
-    background-color: hsl(200, 70%, 95%);
-    max-width: 30em;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-h1 {
-    padding-left: auto;
-    padding-right: auto;
-    color: hsl(200, 80%, 10%);
-}
-
-h1:after, h1:before {
-    content: "❦";
-    font-size: smaller;
-    color: hsl(200, 50%, 70%);
-    padding: 0 .5em;
-}
-
-#chart svg {
-    background-color: hsl(200, 60%, 90%);
-}
+body       { background-color: hsl(200, 70%, 95%); }
+h1         {            color: hsl(200, 80%, 10%); }
+h1:after,
+h1:before  {            color: hsl(200, 50%, 70%); }
+#chart svg { background-color: hsl(200, 60%, 90%); }
 
 svg .dataLine {
     fill: none;

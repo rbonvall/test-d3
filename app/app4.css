@@ -1,22 +1,7 @@
-body {
-    background-color: hsl(60, 70%, 90%);
-    max-width: 30em;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-h1 {
-    padding-left: auto;
-    padding-right: auto;
-    color: hsl(60, 80%, 10%);
-}
-
-h1:after, h1:before {
-    content: "❦";
-    font-size: smaller;
-    color: hsl(60, 50%, 70%);
-    padding: 0 .5em;
-}
+body      { background-color: hsl(60, 70%, 90%); }
+h1        {            color: hsl(60, 80%, 10%); }
+h1:after,
+h1:before {            color: hsl(60, 50%, 70%); }
 
 #matrix table td {
     padding: .4ex .8em;
@@ -24,4 +9,3 @@ h1:after, h1:before {
 #matrix table {
     border-collapse: separate;
 }
-
