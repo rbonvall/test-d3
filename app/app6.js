@@ -1,12 +1,14 @@
 require(['config'], function () {
-require(['d3', 'lodash', 'functional'], function (d3, _, F) {
+require(['d3', 'functional'], function (d3, F) {
     'use strict';
 
     var λ = F.lambda;
 
     var width = 500, height = 300, padding = 40;
 
-    var dataScale = d3.scale.linear().domain([0, 1]).range([40, 75]);
+    var dataScale = d3.scale.linear()
+        .domain([0, 1])
+        .range([40, 75]);
     var generate = F.sequence(Math.random, dataScale, Math.floor);
     var dataset = d3.range(10).map(generate);
 
@@ -22,16 +24,6 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
         .attr('width', width)
         .attr('height', height);
 
-    // Put labels
-    svg.selectAll('text')
-        .data(dataset)
-        .enter()
-            .append('text')
-            .text(Math.floor)
-            .attr('class', 'data-label')
-            .attr('x', F.flip(x))
-            .attr('y', F.sequence(λ('+5'), y));
-
     // Define axes
     var xAxis = d3.svg.axis().scale(x).ticks(dataset.length);
     var yAxis = d3.svg.axis().scale(y).ticks(5).orient('left');
@@ -46,14 +38,26 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
         .attr('transform', 'translate(X, 0)'.replace('X', padding))
         .call(yAxis);
 
-    // Draw data line
+    // Define line function
     var line = d3.svg.line()
-        // .interpolate('monotone')
         .x(F.flip(x))
         .y(y);
+
+    // Draw line
     svg.append('path')
         .attr('class', 'dataLine')
         .attr('d', line(dataset));
+
+    // Put labels
+    svg.selectAll('text.dataLabel')
+        .data(dataset)
+        .enter()
+            .append('text')
+            .attr('class', 'dataLabel')
+            .text(Math.floor)
+            .attr('x', F.flip(x))
+            .attr('y', F.sequence(λ('+5'), y));
+
 
     // Show raw data on the document
     d3.select('#data')

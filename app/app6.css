@@ -39,6 +39,6 @@ svg .axis {
     font-size: 10px;
 }
 
-svg .data-label {
+svg .dataLabel {
     text-anchor: middle;
 }

@@ -1,16 +1,16 @@
 require(['config'], function () {
-require(['d3', 'lodash', 'functional'], function (d3, _, F) {
+require(['d3', 'functional'], function (d3, F) {
     'use strict';
 
     var λ = F.lambda;
 
     var width = 500, height = 300, padding = 40;
 
-    var dataLength = 10;
     var dataScale = d3.scale.linear()
         .domain([0, 1])
         .range([20, 40]);
     var generate = F.sequence(Math.random, dataScale, Math.floor);
+    var dataLength = 10;
     var dataset = [
         d3.range(dataLength).map(generate),
         d3.range(dataLength).map(generate).map(λ('+25')),
@@ -25,13 +25,13 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
         .domain([0, 100])
         .range([height - padding, padding]);
 
-    // Define axes
-    var xAxis = d3.svg.axis().scale(x).ticks(dataLength);
-    var yAxis = d3.svg.axis().scale(y).ticks(5).orient('left');
-
     var svg = d3.select('#chart').append('svg')
         .attr('width', width)
         .attr('height', height);
+
+    // Define axes
+    var xAxis = d3.svg.axis().scale(x).ticks(dataLength);
+    var yAxis = d3.svg.axis().scale(y).ticks(5).orient('left');
 
     // Draw axes
     svg.append('g')
@@ -44,7 +44,9 @@ require(['d3', 'lodash', 'functional'], function (d3, _, F) {
         .call(yAxis);
 
     // Define line function
-    var line = d3.svg.line().x(F.flip(x)).y(y);
+    var line = d3.svg.line()
+        .x(F.flip(x))
+        .y(y);
 
     // Draw lines
     svg.selectAll('path.dataLine')
