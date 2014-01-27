@@ -18,7 +18,7 @@ define(['d3', 'lodash', 'functional'], function (d3, _, F) {
             width: 100,
             height: 80,
             padding: 5,
-            stroke: d3.scale.category20()
+            stroke: d3.scale.category20
         };
 
         function createChart(data) {
@@ -26,6 +26,11 @@ define(['d3', 'lodash', 'functional'], function (d3, _, F) {
             if (!_.isArray(data[0])) {
                 data = [data];
                 console.log('XXX', JSON.stringify({converted: data}));
+            }
+
+            var stroke = conf.stroke;
+            if (_.isFunction(stroke)) {
+                stroke = stroke();
             }
 
             var flattened = _.flatten(data);
@@ -57,7 +62,7 @@ define(['d3', 'lodash', 'functional'], function (d3, _, F) {
                     .append('path')
                     .classed('dataLine', true)
                     .attr('d', line)
-                    .attr('stroke', conf.stroke);
+                    .attr('stroke', stroke);
 
             // Put labels
             svg.selectAll('g.dataLabels')
