@@ -11,11 +11,11 @@ require(['d3', 'simple'], function (d3, simpleChart) {
     //     .call(c);
 
     d3.select('#chartB')
-        .data([500, 200, 300, 150, 200])
+        .datum([500, 200, 300, 150, 200])
         .call(c);
 
     d3.select('#chartC')
-        .data([[70, 70, 70, 90, 30], [30, 40, 40, 60, 70]])
+        .datum([[70, 70, 70, 90, 30], [30, 40, 40, 60, 70]])
         .call(c);
 
 });
