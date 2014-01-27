@@ -64,7 +64,7 @@ define(['d3', 'lodash', 'functional'], function (d3, _, F) {
                 .data(data)
                 .enter()
                     .append('g')
-                    .classed('dataLine', true)
+                    .classed('dataLabels', true)
 
                 .selectAll('text.dataLabel')
                 .data(F.id)
