@@ -39,7 +39,7 @@ define(['d3', 'lodash', 'functional'], function (d3, _, F) {
                 .range([conf.padding, conf.width - conf.padding]);
             var y = d3.scale.linear()
                 .domain([min, max])
-                .range([conf.height - conf.padding, conf.width]);
+                .range([conf.height - conf.padding, conf.padding]);
 
             var line = d3.svg.line()
                 .x(F.flip(x))
