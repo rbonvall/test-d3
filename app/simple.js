@@ -29,10 +29,10 @@ define(['d3', 'lodash', 'functional'], function (d3, _, F) {
             }
 
             var flattened = _.flatten(data);
-            var min = Math.min(flattened);
-            var max = Math.max(flattened);
+            var min = Math.min.apply(null, flattened);
+            var max = Math.max.apply(null, flattened);
             var nrPlots = data.length;
-            var n = Math.max(_.pluck(data, 'length'));
+            var n = Math.max.apply(null, _.pluck(data, 'length'));
 
             var x = d3.scale.linear()
                 .domain([0, n - 1])
