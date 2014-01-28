@@ -13,5 +13,20 @@ h1:after, h1:before {
     content: "❦";
     font-size: smaller;
     padding: 0 .5em;
+    display: inline-block;
+}
+
+h1:before {
+    -webkit-transform: rotate(-90deg);
+       -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+         -o-transform: rotate(-90deg);
+}
+
+h1:after {
+    -webkit-transform: rotate(+90deg);
+       -moz-transform: rotate(+90deg);
+        -ms-transform: rotate(+90deg);
+         -o-transform: rotate(+90deg);
 }
 
