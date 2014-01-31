@@ -10,7 +10,7 @@ define(['d3', 'lodash', 'functional'], function (d3, _, F) {
             }
             config[property] = value;
             return object;
-        }
+        };
     }
 
     function simpleChart() {
