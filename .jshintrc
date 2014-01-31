@@ -10,5 +10,5 @@
 , "strict": false
 , "trailing": true
 , "maxcomplexity": 10
-, "predef": ["require"]
+, "predef": ["require", "define", "console"]
 }
