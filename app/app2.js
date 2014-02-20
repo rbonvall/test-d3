@@ -1,8 +1,7 @@
 require(['config'], function () {
-require(['d3', 'functional'], function (d3, F) {
+require(['d3', 'lambada'], function (d3, λ) {
     'use strict';
 
-    var λ = F.lambda;
     var dataset = d3.range(1, 10).map(Math.random).map(λ('x * 50'));
     var width = 500;
     var height = 100;

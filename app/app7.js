@@ -1,15 +1,13 @@
 require(['config'], function () {
-require(['d3', 'functional'], function (d3, F) {
+require(['d3', 'lambada'], function (d3, λ) {
     'use strict';
-
-    var λ = F.lambda;
 
     var width = 500, height = 300, padding = 40;
 
     var dataScale = d3.scale.linear()
         .domain([0, 1])
         .range([20, 40]);
-    var generate = F.sequence(Math.random, dataScale, Math.floor);
+    var generate = λ.sequence(Math.random, dataScale, Math.floor);
     var dataLength = 10;
     var dataset = [
         d3.range(dataLength).map(generate),
@@ -45,7 +43,7 @@ require(['d3', 'functional'], function (d3, F) {
 
     // Define line function
     var line = d3.svg.line()
-        .x(F.flip(x))
+        .x(λ.flip(x))
         .y(y);
 
     // Draw lines
@@ -65,13 +63,13 @@ require(['d3', 'functional'], function (d3, F) {
             .classed('dataLabels', true)
 
         .selectAll('text.dataLabel')
-        .data(F.id)
+        .data(λ.id)
         .enter()
             .append('text')
             .classed('dataLabel', true)
             .text(Math.floor)
-            .attr('x', F.flip(x))
-            .attr('y', F.sequence(λ('+5'), y));
+            .attr('x', λ.flip(x))
+            .attr('y', λ.sequence('+5', y));
 
     // Show raw data on the document
     d3.select('#data')

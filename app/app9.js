@@ -1,13 +1,11 @@
 require(['config'], function () {
-require(['d3', 'functional'], function (d3, F) {
+require(['d3', 'lambada'], function (d3, λ) {
     'use strict';
-
-    var λ = F.lambda;
 
     var width = 500, height = 150;
     var barPadding = 1;
 
-    var generate = F.sequence(Math.random, λ('*25'), Math.floor);
+    var generate = λ.sequence(Math.random, '*25', Math.floor);
     var dataset = d3.range(30).map(generate);
     var n = dataset.length;
 
@@ -32,18 +30,18 @@ require(['d3', 'functional'], function (d3, F) {
         .data(dataset)
         .enter()
             .append('rect')
-            .attr('x',      F.flip(xScale))
+            .attr('x',      λ.flip(xScale))
             .attr('y',      function (d) { return height - yScale(d); })
             .attr('width',  xScale.rangeBand())
             .attr('height', yScale)
-            .attr('fill',   F.sequence(λ('*10'), blueish))
+            .attr('fill',   λ.sequence('*10', blueish))
     ;
     svg.selectAll('text')
         .data(dataset)
         .enter()
             .append('text')
             .classed('barLabel', true)
-            .text(F.id)
+            .text(λ.id)
             .attr('x', function (d, i) {
                 return xScale(i) + xScale.rangeBand() / 2;
             })

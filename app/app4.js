@@ -1,10 +1,9 @@
 require(['config'], function () {
-require(['d3', 'functional'], function (d3, F) {
+require(['d3', 'lambada'], function (d3, λ) {
     'use strict';
 
-    var λ = F.lambda;
-    var round  = F.sequence(λ('*100'), Math.round, λ('/100'));
-    var random = F.sequence(Math.random, λ('*2.302'), Math.exp, round);
+    var round  = λ.sequence('*100', Math.round, '/100');
+    var random = λ.sequence(Math.random, '*2.302', Math.exp, round);
 
     var lumScale = d3.scale.linear()
         .domain([0, 10])
@@ -26,9 +25,9 @@ require(['d3', 'functional'], function (d3, F) {
         .enter().append('tr')
 
         .selectAll('td')
-        .data(F.id)
+        .data(λ.id)
         .enter().append('td')
-            .text(F.id)
+            .text(λ.id)
             .style('background-color', colorFunc)
             .on('mouseover', function () {
                 var me = d3.select(this);

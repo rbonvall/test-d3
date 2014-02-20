@@ -1,9 +1,8 @@
 // §7. Scales.
 require(['config'], function () {
-require(['d3', 'functional'], function (d3, F) {
+require(['d3', 'lambada'], function (d3, λ) {
     'use strict';
 
-    var λ = F.lambda;
     var dataset = [
         [  5, 20],
         [480, 90],
@@ -20,8 +19,8 @@ require(['d3', 'functional'], function (d3, F) {
     var height = 300;
     var padding = 30;
 
-    var first = F.pluck(0);
-    var second = F.pluck(1);
+    var first = λ('_[0]');
+    var second = λ('_[1]');
 
     var xScale = d3.scale.linear()
         .domain([0, d3.max(dataset, first)])
@@ -47,8 +46,8 @@ require(['d3', 'functional'], function (d3, F) {
         ;
 
     circles
-        .attr('cx', F.compose(xScale, first))
-        .attr('cy', F.compose(yScale, second))
+        .attr('cx', λ.compose(xScale, first))
+        .attr('cy', λ.compose(yScale, second))
         .attr('r', 10)
         .attr('fill', 'none')
         .attr('stroke', 'white')
@@ -62,8 +61,8 @@ require(['d3', 'functional'], function (d3, F) {
 
     labels
         .text(λ('d.join(", ")'))
-        .attr('x', F.compose(xScale, first))
-        .attr('y', F.compose(yScale, second))
+        .attr('x', λ.compose(xScale, first))
+        .attr('y', λ.compose(yScale, second))
         ;
 
     var xAxis = d3.svg.axis()

@@ -1,7 +1,5 @@
-define(['d3', 'lodash', 'functional'], function (d3, _, F) {
+define(['d3', 'lodash', 'lambada'], function (d3, _, λ) {
     'use strict';
-
-    var λ = F.lambda;
 
     function addGetterSetter(object, config, property) {
         object[property] = function (value) {
@@ -46,7 +44,7 @@ define(['d3', 'lodash', 'functional'], function (d3, _, F) {
                 .range([conf.height - conf.padding, conf.padding]);
 
             var line = d3.svg.line()
-                .x(F.flip(x))
+                .x(λ.flip(x))
                 .y(y);
 
             var svg = d3.select(this)
@@ -71,13 +69,13 @@ define(['d3', 'lodash', 'functional'], function (d3, _, F) {
                     .classed('dataLabels', true)
 
                 .selectAll('text.dataLabel')
-                .data(F.id)
+                .data(λ.id)
                 .enter()
                     .append('text')
                     .classed('dataLabel', true)
                     .text(Math.floor)
-                    .attr('x', F.flip(x))
-                    .attr('y', F.sequence(λ('+5'), y));
+                    .attr('x', λ.flip(x))
+                    .attr('y', λ.sequence('+5', y));
 
         }
 

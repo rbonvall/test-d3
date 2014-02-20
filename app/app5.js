@@ -1,8 +1,7 @@
 require(['config'], function () {
-require(['d3', 'lodash', 'functional'], function (d3, _, F) {
+require(['d3', 'lodash', 'lambada'], function (d3, _, λ) {
     'use strict';
 
-    var λ = F.lambda;
     var twoDecimals = function (x) { return x.toFixed(2); };
     var width = 800, height = 400;
     var margin = 50;
